@@ -1,0 +1,25 @@
+<h1 class="d-flex justify-content-center mt-5">Account Activation Page</h1>
+<div class="d-flex justify-content-center mb-3">
+  <span class="text-danger"><% if (msg?.length) { %> <%= msg %> <% } %> </span>
+</div>
+<main class="form-signin w-50 m-auto">
+  <form action="" method="post">
+    <div class="form-floating mb-3">
+      <input
+        class="form-control"
+        type="text"
+        name="code"
+        id="floatingCode"
+        placeholder="Activation Code..."
+      />
+      <label for="floatingCode">Activation Code...</label>
+
+      <span class="text-danger"><%= req?.errors?.code %></span>
+    </div>
+
+    <button class="btn btn-primary w-100 py-2 mb-3">
+      Activate your account
+    </button>
+    <a href="/" class="btn btn-danger w-100 py-2 mb-3">Cancel</a>
+  </form>
+</main>
