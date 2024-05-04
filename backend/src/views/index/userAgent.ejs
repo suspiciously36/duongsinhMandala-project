@@ -1,0 +1,36 @@
+<h1>Devices with Account Access List:</h1>
+<% if (successMsg?.length) { %>
+<p class="mb-3 text-success"><%= successMsg %></p>
+<% } %>
+<div>
+  <% for( [index, item ] of userAgentInfo.entries() ) { %> <% if
+  (item.dataValues.is_logged_in) { %>
+  <p>Device type: <%= item.dataValues.device_type %></p>
+  <p>OS name: <%= item.dataValues.os_name %></p>
+  <p>Browser name: <%= item.dataValues.client_name %></p>
+  <p>Logged in at: <%= item.dataValues.login_time %></p>
+  <p>Logged out at: <%= %></p>
+  <% if (userAgent === item.dataValues.user_agent) { %>
+  <p class="text-danger">---- (Current Session) ----</p>
+  <% } %>
+  <form action="<%=`/logout-only/${item.dataValues.id}` %>">
+    <button class="btn btn-warning">Log out this device</button>
+  </form>
+  <hr />
+  <% } %> <% if (!item.dataValues.is_logged_in) { %>
+  <p>Device type: <%= item.dataValues.device_type %></p>
+  <p>OS name: <%= item.dataValues.os_name %></p>
+  <p>Browser name: <%= item.dataValues.client_name %></p>
+  <p>Logged in at: <%= item.dataValues.login_time %></p>
+  <p>Logged out at: <%= item.dataValues.logout_time %></p>
+  <% if (userAgent === item.dataValues.user_agent) { %> <% } %>
+  <button class="btn btn-warning" disabled>This device is logged out.</button>
+  <hr />
+
+  <% } %> <% } %>
+</div>
+
+<form action="/logout-all" class="d-inline">
+  <button class="btn btn-danger mb-3">Log out all devices</button>
+</form>
+<a href="/" class="btn btn-primary mb-3">Back to homepage</a>

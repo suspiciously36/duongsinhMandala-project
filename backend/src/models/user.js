@@ -9,6 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasOne(models.Phone, {
+        foreignKey: "user_id",
+        as: "phone",
+      });
+      // User.hasMany(models.Post, {
+      //   foreignKey: "user_id",
+      //   as: "posts",
+      // });
+      User.belongsToMany(models.Course, {
+        foreignKey: "user_id",
+        through: "users_courses",
+        as: "courses",
+      });
     }
   }
   User.init(
@@ -41,6 +54,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       activation_code: {
+        type: DataTypes.TEXT,
+      },
+      remembered: {
+        type: DataTypes.BOOLEAN,
+      },
+      remember_token: {
         type: DataTypes.TEXT,
       },
     },

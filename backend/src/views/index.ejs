@@ -1,2 +1,45 @@
-<h1>Trang chủ</h1>
-<a href="/auth/logout">Đăng xuất</a>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <p class="d-flex justify-content-center text-success">
+      <% if (successMsg?.length) { %> <%= successMsg %> <% } %>
+    </p>
+    <h1>Homepage</h1>
+    <p class="display-6">
+      Welcome:
+      <span class="display-6"><i><%= req.user.name %></i></span>
+    </p>
+    <h3>
+      Update your info:
+      <a href="/editInfo" class="btn btn-primary">Click here!</a>
+    </h3>
+    <h3>
+      Change your password:
+      <a href="/passwordChange" class="btn btn-secondary">Click here!</a>
+    </h3>
+    <h3>
+      See devices with account access:
+      <form action="/deviceAccess" method="post" class="d-inline">
+        <button class="btn btn-secondary">Click here!</button>
+      </form>
+      <!-- <a href="/deviceAccess" class="btn btn-secondary">Click here!</a> -->
+    </h3>
+    <h3>
+      Tính năng gửi email:
+      <form action="/gui-mail" class="d-inline">
+        <button class="btn btn-secondary">Click here!</button>
+      </form>
+    </h3>
+    <p>Do you accept Cookies?</p>
+    <button class="btn btn-primary">Yes</button>
+    <button class="btn btn-danger">Yes</button>
+    <hr />
+    <form action="/auth/logout">
+      <button class="btn btn-warning">Log out</button>
+    </form>
+  </body>
+</html>

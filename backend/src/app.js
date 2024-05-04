@@ -14,9 +14,11 @@ const passport = require("passport");
 const { User } = require("./models/index");
 const passportLocal = require("./passports/passport.local");
 const passportGoogle = require("./passports/passport.google");
+// const passportRememberMe = require("./passports/passport.rememberMe");
 
-var indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth/auth");
+var indexRouter = require("./routes/index");
+const userRouter = require("./routes/users/user");
 
 var app = express();
 
@@ -33,6 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use("local", passportLocal);
 passport.use("google", passportGoogle);
+// passport.use("remember-me", passportRememberMe);
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -57,6 +60,8 @@ passport.deserializeUser(async function (id, done) {
   done(null, user);
 });
 
+// app.use(passport.authenticate("remember-me", { successRedirect: "/" }));
+
 app.use(validateMiddleware);
 
 app.use(expressEjsLayouts);
@@ -64,6 +69,7 @@ app.use(expressEjsLayouts);
 app.use("/auth", authRouter);
 app.use(authMiddleware);
 app.use("/", indexRouter);
+app.use("/users", userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

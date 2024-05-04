@@ -1,0 +1,40 @@
+<body>
+  <h1 class="d-flex justify-content-center mt-5">Update your info here</h1>
+  <div class="d-flex justify-content-center mb-3">
+    <span class="text-success"
+      ><% if (msg?.length) { %> <%= msg %> <% } %>
+    </span>
+  </div>
+  <main class="form-signin w-50 m-auto">
+    <form action="/editInfo" method="post">
+      <div class="form-floating mb-3">
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          id="floatingName"
+          placeholder="Name..."
+          value="<%= req?.session?.userSession?.name %>"
+        />
+        <label for="floatingName">Name...</label>
+        <span class="text-danger"><%= req?.errors?.name %></span>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          class="form-control"
+          type="email"
+          name="email"
+          id="floatingEmail"
+          placeholder="Email..."
+          value="<%= req?.session?.userSession?.email %>"
+        />
+        <label for="floatingEmail">Email...</label>
+
+        <span class="text-danger"><%= req?.errors?.email %></span>
+      </div>
+
+      <button class="btn btn-primary w-100 py-2 mb-3">Save</button>
+      <a href="/" class="btn btn-danger w-100 py-2 mb-3">Cancel</a>
+    </form>
+  </main>
+</body>

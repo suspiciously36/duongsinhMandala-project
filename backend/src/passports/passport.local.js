@@ -17,7 +17,6 @@ module.exports = new LocalStrategy(
       });
     }
     if (!user.dataValues.status) {
-      console.log(`hello`);
       return done(null, false, {
         message: "Account has not activated yet.",
       });

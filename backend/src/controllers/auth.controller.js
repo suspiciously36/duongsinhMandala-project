@@ -1,5 +1,5 @@
 const { string } = require("yup");
-const { User, Provider } = require("../models/index");
+const { User, Provider, UserAgent } = require("../models/index");
 const { Op } = require("sequelize");
 const sendMail = require("../utils/mail.util");
 const md5 = require("md5");
@@ -8,14 +8,12 @@ const bcrypt = require("bcrypt");
 const codeGenerator = require("../utils/code.util");
 
 module.exports = {
-  login(req, res) {
-    if (req.user) {
-      return res.redirect("/");
-    }
+  async login(req, res) {
     const error = req.flash("error");
     const successMsg = req.flash("success-msg");
     res.render("auth/login", { req, error, successMsg });
   },
+
   register(req, res) {
     const msg = req.flash("msg");
     const passwordMsg = req.flash("password-msg");
@@ -171,8 +169,8 @@ module.exports = {
   },
   async handleResetPassword(req, res, next) {
     const rule = {
-      password: string().required("Mật khẩu bắt buộc phải nhập."),
-      password2: string().required("Bắt buộc phải nhập lại mật khẩu."),
+      password: string().required("Password is required."),
+      password2: string().required("Retype password is required."),
     };
 
     const body = await req.validate(req.body, rule);
