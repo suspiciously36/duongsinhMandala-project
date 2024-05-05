@@ -28,7 +28,7 @@ router.get("/logout", (req, res) => {
         },
         { where: { user_agent: userAgent } }
       );
-      req.flash("success-msg", "Đăng xuất thành công.");
+      req.flash("success-msg", "Logged out successfully.");
 
       return res.redirect("/auth/login");
     }

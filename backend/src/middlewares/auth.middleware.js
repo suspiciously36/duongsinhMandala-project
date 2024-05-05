@@ -7,7 +7,6 @@ module.exports = async (req, res, next) => {
     const isLoggedIn = userAgent.dataValues.is_logged_in;
     if (!isLoggedIn && req.url != "/auth/login") {
       res.redirect("/auth/login");
-      // console.log(req.url);
       return;
     }
   }

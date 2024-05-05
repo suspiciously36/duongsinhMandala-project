@@ -19,6 +19,7 @@ const passportGoogle = require("./passports/passport.google");
 const authRouter = require("./routes/auth/auth");
 var indexRouter = require("./routes/index");
 const userRouter = require("./routes/users/user");
+const apiRouter = require("./routes/api/api");
 
 var app = express();
 
@@ -65,6 +66,8 @@ passport.deserializeUser(async function (id, done) {
 app.use(validateMiddleware);
 
 app.use(expressEjsLayouts);
+
+app.use("/api", apiRouter);
 
 app.use("/auth", authRouter);
 app.use(authMiddleware);

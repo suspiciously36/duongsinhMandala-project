@@ -1,13 +1,13 @@
-<h1>Danh sách người dùng</h1>
-<a href="/users/add" class="btn btn-primary mb-2">Thêm mới</a>
-<a href="/" class="btn btn-primary mb-2">Về trang chủ</a>
+<h1>Users list</h1>
+<a href="/users/add" class="btn btn-primary mb-2">Add new user</a>
+<a href="/" class="btn btn-primary mb-2">Back to homepage</a>
 <form class="mb-3">
   <div class="row">
     <div class="col-3">
       <select name="status" class="form-select">
-        <option value="all">Tất cả</option>
-        <option value="active">Kích hoạt</option>
-        <option value="inactive">Chưa kích hoạt</option>
+        <option value="all">All</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
       </select>
     </div>
     <div class="col-7">
@@ -15,11 +15,11 @@
         type="search"
         name="keyword"
         class="form-control"
-        placeholder="Từ khóa..."
+        placeholder="Keyword..."
       />
     </div>
     <div class="col-2 d-grid">
-      <button class="btn btn-success">Tìm kiếm</button>
+      <button class="btn btn-success">Search</button>
     </div>
   </div>
 </form>
@@ -27,12 +27,12 @@
   <thead>
     <tr>
       <th width="5%">STT</th>
-      <th>Tên</th>
+      <th>Name</th>
       <th>Email</th>
-      <th>Điện thoại</th>
-      <th>Trạng thái</th>
-      <th width="5%">Sửa</th>
-      <th width="5%">Xóa</th>
+      <th>Phone</th>
+      <th>Status</th>
+      <th width="5%">Edit</th>
+      <th width="5%">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -43,19 +43,19 @@
       <td><%= user.email %></td>
       <td><%= user.phone?.phone %></td>
       <td width="15%">
-        <%- user.status ? `<span class="badge bg-success">Kích hoạt</span>`:
-        '<span class="badge bg-danger">Chưa kích hoạt</span>'; %>
+        <%- user.status ? `<span class="badge bg-success">Activated</span>`:
+        '<span class="badge bg-danger">Not Activated</span>'; %>
       </td>
       <td>
-        <a href="/users/edit/<%= user.id %>" class="btn btn-warning">Sửa</a>
+        <a href="/users/edit/<%= user.id %>" class="btn btn-warning">Edit</a>
       </td>
       <td>
         <form
           action="/users/delete/<%= user.id %>"
           method="post"
-          onclick="return confirm('Bạn có chắc chắn?')"
+          onclick="return confirm('Are you sure?')"
         >
-          <button class="btn btn-danger">Xóa</button>
+          <button class="btn btn-danger">Delete</button>
         </form>
       </td>
     </tr>
@@ -66,7 +66,7 @@
 <ul class="pagination pagination-sm d-flex justify-content-end">
   <% if (page > 1) { %>
   <li class="page-item">
-    <a class="page-link" href="?page=<%= +page-1 %>">Trước</a>
+    <a class="page-link" href="?page=<%= +page-1 %>">Previous</a>
   </li>
   <% } %> <% for( let index = 1; index <= totalPages; index++ ) { %>
   <li class="page-item <%= page == index ? 'active': '' %>">
@@ -74,7 +74,7 @@
   </li>
   <% } %> <% if (page < totalPages) { %>
   <li class="page-item">
-    <a class="page-link" href="?page=<%= +page+1 %>">Sau</a>
+    <a class="page-link" href="?page=<%= +page+1 %>">Next</a>
   </li>
   <% } %>
 </ul>

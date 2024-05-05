@@ -14,24 +14,28 @@
       <span class="display-6"><i><%= req.user.name %></i></span>
     </p>
     <h3>
+      Users page:
+      <a href="/users" class="btn btn-primary">Click here!</a>
+    </h3>
+    <h3>
       Update your info:
       <a href="/editInfo" class="btn btn-primary">Click here!</a>
     </h3>
     <h3>
       Change your password:
-      <a href="/passwordChange" class="btn btn-secondary">Click here!</a>
+      <a href="/passwordChange" class="btn btn-primary">Click here!</a>
     </h3>
     <h3>
       See devices with account access:
       <form action="/deviceAccess" method="post" class="d-inline">
-        <button class="btn btn-secondary">Click here!</button>
+        <button class="btn btn-primary">Click here!</button>
       </form>
-      <!-- <a href="/deviceAccess" class="btn btn-secondary">Click here!</a> -->
+      <!-- <a href="/deviceAccess" class="btn btn-primary">Click here!</a> -->
     </h3>
     <h3>
-      Tính năng gửi email:
+      Sending email:
       <form action="/gui-mail" class="d-inline">
-        <button class="btn btn-secondary">Click here!</button>
+        <button class="btn btn-primary">Click here!</button>
       </form>
     </h3>
     <p>Do you accept Cookies?</p>

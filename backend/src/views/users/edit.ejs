@@ -1,12 +1,12 @@
-<h1>Sửa người dùng</h1>
+<h1>Edit user</h1>
 <form action="" method="post">
   <div class="mb-3">
-    <label for="">Tên</label>
+    <label for="">Name</label>
     <input
       type="text"
       name="name"
       class="form-control"
-      placeholder="Tên..."
+      placeholder="Name..."
       value="<%= user.name %>"
     />
   </div>
@@ -21,14 +21,14 @@
     />
   </div>
   <div class="mb-3">
-    <label for="">Trạng thái</label>
+    <label for="">Status</label>
     <select name="status" class="form-select">
-      <option value="0" <%= !user.status ? 'selected': '' %>>Chưa kích hoạt</option>
-      <option value="1" <%= user.status ? 'selected': '' %>>Kích hoạt</option>
+      <option value="0" <%= !user.status ? 'selected': '' %>>Inactive</option>
+      <option value="1" <%= user.status ? 'selected': '' %>>Active</option>
     </select>
   </div>
   <div class="mb-3">
-    <label for="">Khóa học</label>
+    <label for="">Courses</label>
     <% courses.forEach(({id, name}) => { 
       const isChecked = user.courses.find(item => item.id === id);
       %>
@@ -38,5 +38,5 @@
     </label>
     <% }) %>
   </div>
-  <button class="btn btn-primary">Lưu</button>
+  <button class="btn btn-primary">Save</button>
 </form>
