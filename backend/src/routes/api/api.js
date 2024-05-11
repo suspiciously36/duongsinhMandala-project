@@ -14,6 +14,7 @@ router.delete("/v1/users/:id", userController.delete); // DELETE /api/v1/users/{
 
 router.post("/v1/auth/login", authController.login);
 router.post("/v1/auth/logout", authMiddleware, authController.logout);
+router.post("/v1/auth/refresh", authController.refresh);
 
 router.get("/v1/auth/profile", authMiddleware, authController.profile);
 

@@ -14,6 +14,7 @@ module.exports = async (req, res, next) => {
     return errorResponse(res, 401, "Unauthorized");
   }
   const userId = decoded.userId;
+  const exp = decoded.exp;
   const user = await User.findOne({ where: { id: userId } });
   if (!user || !user.status) {
     return errorResponse(res, 401, "Unauthorized");

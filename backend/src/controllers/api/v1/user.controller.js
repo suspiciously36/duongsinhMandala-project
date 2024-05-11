@@ -3,6 +3,7 @@ const { successResponse, errorResponse } = require("../../../helpers/response");
 const { Op } = require("sequelize");
 const { string, object } = require("yup");
 const bcrypt = require("bcrypt");
+const UserTransformer = require("../../../transformers/user.transformer");
 module.exports = {
   async index(req, res) {
     const { sort = "id", order = "asc", status, q, page, limit } = req.query;
@@ -30,7 +31,9 @@ module.exports = {
     }
     try {
       const { count, rows: users } = await User.findAndCountAll(options);
-      return successResponse(res, 200, "Success", users, { count });
+      return successResponse(res, 200, "Success", new UserTransformer(users), {
+        count,
+      });
     } catch (e) {
       return errorResponse(res, 500, "Server error.");
     }
