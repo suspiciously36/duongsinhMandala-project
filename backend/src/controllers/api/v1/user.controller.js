@@ -3,9 +3,13 @@ const { successResponse, errorResponse } = require("../../../helpers/response");
 const { Op } = require("sequelize");
 const { string, object } = require("yup");
 const bcrypt = require("bcrypt");
+const connectRedis = require("../../../utils/redis.util");
 const UserTransformer = require("../../../transformers/user.transformer");
+const Cache = require("../../../../core/cache");
 module.exports = {
   async index(req, res) {
+    const redis = await connectRedis();
+
     const { sort = "id", order = "asc", status, q, page, limit } = req.query;
     const filter = {};
     if (status === "true" || status === "false") {
@@ -30,7 +34,28 @@ module.exports = {
       options.offset = offset;
     }
     try {
-      const { count, rows: users } = await User.findAndCountAll(options);
+      // const usersRedis = await redis.get("users-cache");
+      // let count, users;
+      // if (!usersRedis) {
+      //   const result = await User.findAndCountAll(options);
+      //   count = result.count;
+      //   users = result.rows;
+      //   await redis.set("users-cache", JSON.stringify(result), { EX: 10 });
+      //   console.log("No-cache");
+      // } else {
+      //   const result = JSON.parse(usersRedis);
+      //   count = result.count;
+      //   users = result.rows;
+      //   console.log("cache");
+      // }
+
+      const { rows: users, count } = await Cache.remember(
+        "users-cache",
+        10,
+        () => {
+          return User.findAndCountAll(options);
+        }
+      );
       return successResponse(res, 200, "Success", new UserTransformer(users), {
         count,
       });
@@ -42,7 +67,9 @@ module.exports = {
     const { id } = req.params;
 
     try {
-      const user = await User.findByPk(id);
+      const user = await Cache.remember(`user_cache_${id}`, 10, () => {
+        return User.findByPk(id);
+      });
       if (!user) {
         return errorResponse(res, 404, "User not found.");
       }

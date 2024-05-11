@@ -5,7 +5,7 @@ const userController = require("../../controllers/api/v1/user.controller");
 const authController = require("../../controllers/api/v1/auth.controller");
 const authMiddleware = require("../../middlewares/api/auth.middleware");
 
-router.get("/v1/users", userController.index); // GET /api/v1/usersD
+router.get("/v1/users", userController.index); // GET /api/v1/users
 router.get("/v1/users/:id", userController.find); // GET /api/v1/users/{id}
 router.post("/v1/users", userController.store); // POST /api/v1/users
 router.put("/v1/users/:id", userController.update); // PUT /api/v1/users/{id}
