@@ -5,11 +5,9 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "postinstall": "npx sequelize-cli db:migrate",
-    "build": "npm run postinstall && npm run vercel-build"
+    "build": "npm run vercel-build"
   },
   "dependencies": {
-    "@jmilanes/passport-remember-me": "^0.1.2",
     "bcrypt": "^5.1.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",

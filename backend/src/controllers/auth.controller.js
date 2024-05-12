@@ -92,7 +92,7 @@ module.exports = {
               { where: { email: body.email } }
             );
 
-            const content = `<a href="http://localhost:3000/auth/account-activate?email=${body.email}">Click me to activate your account!</a><br/><p>Activation Code: ${activationCode}</p>`;
+            const content = `<a href="${process.env.DEV_PATH}/auth/account-activate?email=${body.email}">Click me to activate your account!</a><br/><p>Activation Code: ${activationCode}</p>`;
             const info = await sendMail(
               body.email,
               `You have created a new account. Click here to get your activation code.`,
@@ -190,7 +190,7 @@ module.exports = {
             where: { email: { [Op.iLike]: req.query.email } },
           }
         );
-        const content = `<a href="http://localhost:3000/auth/login">You have reset your password. Click me to log in and have fun!</a>`;
+        const content = `<a href="${process.env.DEV_PATH}/auth/login">You have reset your password. Click me to log in and have fun!</a>`;
         await sendMail(
           req.query.email,
           `Reset password successfully.`,
@@ -252,7 +252,7 @@ module.exports = {
             }
           );
 
-          const content = `<a href="http://localhost:3000/auth/reset-password?email=${body.email}&reset_token=${reset_token}">Click me to reset your password!</a>`;
+          const content = `<a href="${process.env.DEV_PATH}/auth/reset-password?email=${body.email}&reset_token=${reset_token}">Click me to reset your password!</a>`;
           const info = await sendMail(
             body.email,
             `You requested for a password reset.`,
