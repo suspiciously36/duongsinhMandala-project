@@ -13,14 +13,19 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "user_id",
         as: "phone",
       });
-      // User.hasMany(models.Post, {
-      //   foreignKey: "user_id",
-      //   as: "posts",
-      // });
+      User.hasOne(models.MailHistory, {
+        foreignKey: "user_id",
+        as: "mailHistory",
+      });
       User.belongsToMany(models.Course, {
         foreignKey: "user_id",
         through: "users_courses",
         as: "courses",
+      });
+      User.belongsToMany(models.Role, {
+        foreignKey: "user_id",
+        through: "users_roles",
+        as: "roles",
       });
     }
   }

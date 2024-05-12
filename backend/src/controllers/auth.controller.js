@@ -11,7 +11,7 @@ module.exports = {
   async login(req, res) {
     const error = req.flash("error");
     const successMsg = req.flash("success-msg");
-    res.render("auth/login", { req, error, successMsg });
+    res.render("auth/login", { req, error, successMsg, layout: "auth/layout" });
   },
 
   register(req, res) {

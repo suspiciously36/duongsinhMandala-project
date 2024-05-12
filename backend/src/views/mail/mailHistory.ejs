@@ -1,0 +1,19 @@
+<h1>Mail History Page</h1>
+<hr />
+<% for( [index, item] of mailData.entries() ) { %> <% if
+(item.dataValues.status) { %>
+<p>Mail index: <%= index+1 %></p>
+<p>Mail title: <%= item.dataValues.title %></p>
+<p>Mail content: <%= item.dataValues.content %></p>
+<p>Mail read status: <b>READ</b></p>
+<% } %>
+<hr />
+<% if (!item.dataValues.status) { %>
+<p>Mail index: <%= index+1 %></p>
+<p>Mail title: <%= item.dataValues.title %></p>
+<p>Mail content: <%= item.dataValues.content %></p>
+<p>Mail read status: <b>UNREAD</b></p>
+<% } %> <% } %>
+<hr />
+
+<a href="/sendMail" class="btn btn-primary">Back to send mail page</a>

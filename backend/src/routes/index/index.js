@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const indexController = require("../../controllers/index.controller");
-const { createClient } = require("redis");
 const connectRedis = require("../../utils/redis.util");
 /* GET home page. */
 router.get("/", indexController.index);

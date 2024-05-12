@@ -102,7 +102,7 @@ module.exports = {
             { where: { id: { [Op.not]: userAgentId.dataValues.id } } }
           );
 
-          req.flash("success-msg", "Đổi mật khẩu thành công.");
+          req.flash("success-msg", "Password changed successfully.");
           return res.redirect("/");
         }
       } catch (e) {

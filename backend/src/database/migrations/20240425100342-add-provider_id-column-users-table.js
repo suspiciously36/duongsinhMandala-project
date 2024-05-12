@@ -5,6 +5,8 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.addColumn("users", "provider_id", {
       type: Sequelize.INTEGER,
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
       references: {
         model: {
           tableName: "providers",

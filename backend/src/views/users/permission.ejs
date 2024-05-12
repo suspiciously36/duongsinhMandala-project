@@ -1,0 +1,12 @@
+<h1>Role assigning</h1>
+<form action="" method="post">
+  <% roles.forEach((role, index) => { const isChecked = user.roles.find(item =>
+  item.id === role.id); %>
+  <label class="d-block my-1">
+    <input type="checkbox" name="roles" value="<%= role.id %>" <%= isChecked ?
+    'checked': '' %>/> <%= role.name %>
+  </label>
+  <% }) %>
+  <button class="btn btn-primary">Lưu thay đổi</button>
+  <a href="/users" class="btn btn-danger">Hủy</a>
+</form>

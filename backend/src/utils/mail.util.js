@@ -17,7 +17,7 @@ module.exports = async (to, subject, msg) => {
     from: '"Keep your eyes on me!" <082.hoangtuankiet@gmail.com>', // sender address
     to, // list of receivers
     subject, // Subject line
-    html: msg,
+    html: msg + '<img src="http://localhost:3000/pixel-tracking" alt="pt" />',
   });
   return info;
 };

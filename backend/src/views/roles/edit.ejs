@@ -1,0 +1,93 @@
+<h1>Edit role</h1>
+<form action="" method="post">
+  <div class="mb-3">
+    <label for="">Name</label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      placeholder="Name..."
+      value="<%= role.name %>"
+    />
+  </div>
+  <div class="mb-3">
+    <table class="table table-bordered">
+      <tr>
+        <th width="20%">Role function</th>
+        <th>Permission</th>
+      </tr>
+      <tr>
+        <td>User management</td>
+        <td>
+          <div class="row">
+            <div class="col-3">
+              <label>
+                <input type="checkbox" name="permissions" value="users.read" <%=
+                isPermission(role.permissions, 'users.read') ? 'checked': ''
+                %>/> View
+              </label>
+            </div>
+            <div class="col-3">
+              <label>
+                <input type="checkbox" name="permissions" value="users.create"
+                <%= isPermission(role.permissions, 'users.create') ? 'checked':
+                '' %> /> Add
+              </label>
+            </div>
+            <div class="col-3">
+              <label>
+                <input type="checkbox" name="permissions" value="users.update"
+                <%= isPermission(role.permissions, 'users.update') ? 'checked':
+                '' %> /> Edit
+              </label>
+            </div>
+            <div class="col-3">
+              <label>
+                <input type="checkbox" name="permissions" value="users.delete"
+                <%= isPermission(role.permissions, 'users.delete') ? 'checked':
+                '' %> /> Delete
+              </label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Role management</td>
+        <td>
+          <div class="row">
+            <div class="col-3">
+              <label>
+                <input type="checkbox" name="permissions" value="roles.read" <%=
+                isPermission(role.permissions, 'roles.read') ? 'checked': ''
+                %>/> View
+              </label>
+            </div>
+            <div class="col-3">
+              <label>
+                <input type="checkbox" name="permissions" value="roles.create"
+                <%= isPermission(role.permissions, 'roles.create') ? 'checked':
+                '' %> /> Add
+              </label>
+            </div>
+            <div class="col-3">
+              <label>
+                <input type="checkbox" name="permissions" value="roles.update"
+                <%= isPermission(role.permissions, 'roles.update') ? 'checked':
+                '' %> /> Edit
+              </label>
+            </div>
+            <div class="col-3">
+              <label>
+                <input type="checkbox" name="permissions" value="roles.delete"
+                <%= isPermission(role.permissions, 'roles.delete') ? 'checked':
+                '' %> /> Delete
+              </label>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <button class="btn btn-primary">Save changes</button>
+  <a href="/roles" class="btn btn-danger">Cancel</a>
+</form>

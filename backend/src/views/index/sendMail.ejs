@@ -1,0 +1,49 @@
+<h1>Send mail form</h1>
+<% if (msg?.length) { %>
+<div class="text-success text-center mb-3"><%= msg %></div>
+<% } %>
+<form action="/sendMail" method="post">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Send to:</label>
+    <input
+      type="email"
+      name="sendTo"
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="Who do you want to mail to?"
+      value="<%= req?.olds?.sendTo %>"
+    />
+    <span class="text-danger"><%= req?.errors?.sendTo %></span>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleFormControlInput2" class="form-label">Title:</label>
+    <input
+      type="text"
+      name="title"
+      class="form-control"
+      id="exampleFormControlInput2"
+      placeholder="Mail title..."
+      value="<%= req?.olds?.title %>"
+    />
+    <span class="text-danger"><%= req?.errors?.title %></span>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Content:</label>
+    <textarea
+      class="form-control"
+      name="content"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      placeholder="Email content..."
+      value="<%= req?.olds?.content %>"
+    ></textarea>
+    <span class="text-danger"><%= req?.errors?.content %></span>
+  </div>
+
+  <button class="btn btn-primary mb-3">Send mail button</button>
+</form>
+<a href="/" class="btn btn-danger">Back to homepage</a>
+<span><i>OR:</i></span>
+<a href="/mailHistory" class="btn btn-warning">See mail history </a>

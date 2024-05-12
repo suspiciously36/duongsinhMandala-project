@@ -13,6 +13,22 @@
     />
   </head>
   <body>
-    <div class="container"><%- body %></div>
+    <div class="container py-3">
+      <div class="row">
+        <div class="col-3">
+          <h3>Menu</h3>
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="/">Homepage</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users">User management</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/roles">Role management</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-9"><%- body %></div>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,4 +1,4 @@
-const { User, Phone, Course } = require("../models/index");
+const { User, Phone, Course, Role } = require("../models/index");
 const { Op } = require("sequelize");
 const { string } = require("yup");
 module.exports = {
@@ -154,5 +154,36 @@ module.exports = {
       force: true, //Kích hoạt xóa vĩnh viễn
     });
     return res.redirect("/users");
+  },
+  permission: async (req, res) => {
+    const { id } = req.params;
+    const roles = await Role.findAll();
+    const user = await User.findByPk(id, {
+      include: {
+        model: Role,
+        as: "roles",
+      },
+    });
+    res.render("users/permission", { roles, user });
+  },
+  handlePermission: async (req, res) => {
+    const { id } = req.params;
+
+    if (!req.body.roles) {
+      req.body.roles = [];
+    }
+    const roles = Array.isArray(req.body.roles)
+      ? req.body.roles
+      : [req.body.roles];
+
+    const user = await User.findByPk(id);
+    if (user) {
+      const roleInstances = await Promise.all(
+        roles.map((roleId) => Role.findByPk(roleId))
+      );
+      await user.setRoles(roleInstances);
+    }
+
+    return res.redirect("/users/permission/" + id);
   },
 };
