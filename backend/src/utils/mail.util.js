@@ -18,7 +18,8 @@ module.exports = async (to, subject, msg) => {
     to, // list of receivers
     subject, // Subject line
     html:
-      msg + `<img src="${process.env.PROD_PATH}/pixel-tracking" alt="pt" />`,
+      msg +
+      `<img src="https://simple-admin-webpage.vercel.app/pixel-tracking" alt="pt" />`,
   });
   return info;
 };
